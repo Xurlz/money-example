@@ -11,8 +11,8 @@ class Money {
   }
   function equals(object $object)
   {
-    $franc = $object;
-    return $this->ammount === $franc->ammount();
+    $money = $object;
+    return $this->ammount === $money->ammount();
   }
   function ammount()
   {
