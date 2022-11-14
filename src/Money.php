@@ -9,10 +9,10 @@ class Money {
   {
     return new Money($this->ammount * $multiplier);
   }
-  function equals(object $object)
+  function equals(Money $money)
   {
-    $money = $object;
-    return $this->ammount === $money->ammount();
+    return $this->ammount === $money->ammount()
+      && get_class($this) === get_class($money);
   }
   function ammount()
   {
