@@ -12,5 +12,5 @@
 - [ ] Dollar/Franc duplication
 - [x] ~~Common equals~~
 - [x] ~~Common times~~
-- [ ] **Compare Francs with Dollars**
+- [x] ~~Compare Francs with Dollars~~
 
