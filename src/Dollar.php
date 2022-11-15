@@ -5,7 +5,7 @@ class Dollar extends Money {
   {
     parent::__construct($ammount);
   }
-  function times(int $multiplier) : Dollar
+  function times(int $multiplier) : Money
   {
     return new Dollar($this->ammount * $multiplier);
   }
