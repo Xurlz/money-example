@@ -5,6 +5,10 @@ class Money {
   {
     $this->ammount = $ammount;
   }
+  static function dollar(int $ammount)
+  {
+    return new Dollar($ammount);
+  }
   function times(int $multiplier)
   {
     return new Money($this->ammount * $multiplier);
