@@ -9,6 +9,10 @@ class Money {
   {
     return new Dollar($ammount);
   }
+  static function franc(int $ammount)
+  {
+    return new Franc($ammount);
+  }
   function times(int $multiplier)
   {
     return new Money($this->ammount * $multiplier);
