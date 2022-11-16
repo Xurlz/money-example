@@ -3,6 +3,11 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testCurrency()
+  {
+    $this->assertEquals("USD",Money::dollar(1)->getCurrency());
+    $this->assertEquals("CHR",Money::franc(1)->getCurrency());
+  }
   function testFrancMultiplication()
   {
     $five = Money::franc(5);
