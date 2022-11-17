@@ -1,6 +1,6 @@
 <?php
 
-class Money {
+abstract class Money {
   function __construct(protected int $ammount)
   {
     $this->ammount = $ammount;
@@ -13,10 +13,8 @@ class Money {
   {
     return new Franc($ammount);
   }
-  function times(int $multiplier)
-  {
-    return new Money($this->ammount * $multiplier);
-  }
+  abstract function currency() : String;
+  abstract function times(int $multiplier);
   function equals(Money $money)
   {
     return $this->ammount === $money->ammount()
