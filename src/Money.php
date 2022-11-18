@@ -1,17 +1,18 @@
 <?php
 
 abstract class Money {
-  function __construct(protected int $ammount)
+  function __construct(protected int $ammount, protected string $currency)
   {
     $this->ammount = $ammount;
+    $this->currency = $currency;
   }
   static function dollar(int $ammount)
   {
-    return new Dollar($ammount);
+    return new Dollar($ammount,"USD");
   }
   static function franc(int $ammount)
   {
-    return new Franc($ammount);
+    return new Franc($ammount,"CHR");
   }
   abstract function currency() : String;
   abstract function times(int $multiplier);

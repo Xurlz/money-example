@@ -1,10 +1,9 @@
 <?php
 
 class Franc extends Money {
-  function __construct(int $ammount)
+  function __construct(int $ammount,string $currency)
   {
-    parent::__construct($ammount);
-    $this->currency = "CHR";
+    parent::__construct($ammount,$currency);
   }
   function currency() : String
   {
@@ -12,7 +11,7 @@ class Franc extends Money {
   }
   function times(int $multiplier) : Money
   {
-    return new Franc($this->ammount * $multiplier);
+    return new Franc($this->ammount * $multiplier,"CHR");
   }
 }
 

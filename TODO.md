@@ -13,5 +13,5 @@
 - [x] ~~Common equals~~
 - [x] ~~Common times~~
 - [x] ~~Compare Francs with Dollars~~
-- [ ] **Currency?**
+- [x] ~~Currency?~~
 
