@@ -14,4 +14,5 @@
 - [x] ~~Common times~~
 - [x] ~~Compare Francs with Dollars~~
 - [x] ~~Currency?~~
+- [ ] Delete testFrancMultiplication?
 

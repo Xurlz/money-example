@@ -3,6 +3,10 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testDifferentClassEquality()
+  {
+    $this->assertTrue((new Money(10, "CHF"))->equals(new Franc(10, "CHF")));
+  }
   function testCurrency()
   {
     $this->assertEquals("USD",Money::dollar(1)->currency());

@@ -1,26 +1,38 @@
 <?php
 
-abstract class Money {
+class Money {
   function __construct(protected int $ammount, protected string $currency)
   {
     $this->ammount = $ammount;
     $this->currency = $currency;
   }
+  function currency() : String
+  {
+    return $this->currency;
+  }
+  function equals(Money $money) : bool
+  {
+    return $this->ammount === $money->ammount
+      && $this->currency() === $money->currency();
+  }
+  function __toString()
+  {
+    return "ammount {$this->ammount} {$this->currency}";
+  }
   static function dollar(int $ammount)
   {
-    return new Dollar($ammount,"USD");
+    return new Money($ammount,"USD");
   }
   static function franc(int $ammount)
   {
-    return new Franc($ammount,"CHR");
+    return new Money($ammount,"CHR");
   }
-  abstract function currency() : String;
-  abstract function times(int $multiplier);
-  function equals(Money $money)
+
+  function times(int $multiplier) : Money
   {
-    return $this->ammount === $money->ammount()
-      && get_class($this) === get_class($money);
+    return new Money($this->ammount * $multiplier,$this->currency);
   }
+
   function ammount()
   {
     return $this->ammount;
