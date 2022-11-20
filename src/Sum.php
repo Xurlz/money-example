@@ -6,4 +6,14 @@ class Sum implements Expression {
     $this->augend = $augend;
     $this->addend = $addend;
   }
+  function plus(Money $addend) : Expression
+  {
+    return new Sum($this->augend,$this->addend);
+  }
+  function reduce(string $to) : Money
+  {
+    $ammount = fn() : int =>
+      $this->augend->ammount() + $this->addend->ammount();
+    return new Money($ammount(),$to);
+  }
 }

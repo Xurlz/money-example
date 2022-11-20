@@ -3,13 +3,26 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testReduceMoney()
+  {
+    $bank = new Bank;
+    $result = fn() : Money => $bank->reduce( Money::dollar(1), "USD");
+    $this->assertEquals(Money::dollar(1), $result());
+  }
+  function testReduceSum()
+  {
+    $sum = fn() : Expression => new Sum(Money::dollar(3),Money::dollar(4));
+    $bank = new Bank;
+    $result = fn() : Money => $bank->reduce($sum(),"USD");
+    $this->assertEquals(Money::dollar(7),$result());
+  }
   function testPlusReturnsSum()
   {
     $five = Money::dollar(5);
     $result = fn() : Expression => $five->plus($five);
-    $sum = (Sum) $result();
-    $this->assertEquals($five, $sum->augent);
-    $this->assertEquals($five, $sum->addend);
+    $sum = fn () : Sum => $result();
+    $this->assertEquals($five, $sum()->augend);
+    $this->assertEquals($five, $sum()->addend);
     
   }
   function testSimpleAddition()
