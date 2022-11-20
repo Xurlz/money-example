@@ -1,10 +1,21 @@
 <?php
 
-class Money {
+interface Expression {
+  function plus(Money $addend) : Expression;
+}
+
+class Money implements Expression {
   function __construct(protected int $ammount, protected string $currency)
   {
     $this->ammount = $ammount;
     $this->currency = $currency;
+  }
+  function plus(Money $addend) : Money
+  {
+    return new Money(
+      $this->ammount + $addend->ammount,
+      $this->currency
+    );
   }
   function currency() : String
   {

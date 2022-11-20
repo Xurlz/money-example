@@ -3,6 +3,14 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testSimpleAddition()
+  {
+    $bank = new Bank;
+    $five = Money::dollar(5);
+    $sum = fn() : Expression => $five->plus($five);
+    $reduced = $bank->reduce($sum(),"USD");
+    $this->assertEquals(Money::dollar(10),$reduced);
+  }
   function testCurrency()
   {
     $this->assertEquals("USD",Money::dollar(1)->currency());
