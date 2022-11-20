@@ -3,6 +3,15 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testPlusReturnsSum()
+  {
+    $five = Money::dollar(5);
+    $result = fn() : Expression => $five->plus($five);
+    $sum = (Sum) $result();
+    $this->assertEquals($five, $sum->augent);
+    $this->assertEquals($five, $sum->addend);
+    
+  }
   function testSimpleAddition()
   {
     $bank = new Bank;
