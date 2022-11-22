@@ -3,6 +3,13 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testReduceMoneyDifferentCurrency()
+  {
+    $bank = new Bank;
+    $bank->addRate("CHF","USD",2);
+    $result = fn() : Money => $bank->reduce(Money::franc(2),"USD");
+    $this->assertEquals(Money::dollar(1), $result());
+  }
   function testReduceMoney()
   {
     $bank = new Bank;
