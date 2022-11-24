@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
-  // No livro, este exercício foi implementado em Java. (este teste é composto pela comparação entre dois arrays com o mesmo valor,(o teste passa se caso (remover o "caso")as duas instâncias forem iguais)(este teste passa no php, mas falha no Java) no java um não é igual ao outro, coisa que não ocorre no php)onde teste tipo de teste que consiste na comparação entre dois arrays com o mesmo valor, esta falha não ocorre no php. Além disso, nos exercícios, (a falha que ocorre no Java é contornada)esta falha é contornada pela criação de uma nova classe. A criação deste novo objeto não aparenta ser necessária no (no php) cenário onde está se implementando em php. Pórem, para fins de imitar os passos do livro (mesmo utilizando uma linguagem diferente, irei criar um novo objeto de acordo com o livro.
+  // No livro, este exercício foi implementado em Java. (este teste (o teste abaixo) é composto pela comparação entre dois arrays com o mesmo valor, ele passa se as duas instâncias forem iguais. Este teste passa no php, mas falha no Java. Além disso, nos exercícios, a falha que ocorre no Java é contornadaesta falha é contornada pela(com a) criação de uma nova classe. A criação deste novo objeto não aparenta ser necessária no php, pórem, para fins de imitar os passos do livro (mesmo utilizando uma linguagem diferente), irei criar um novo objeto de acordo com o livro.
   function testArrayEquals()
   {
     $this->assertEquals(['abc'],['abc']);
