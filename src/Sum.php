@@ -10,7 +10,7 @@ class Sum implements Expression {
   {
     return new Sum($this->augend,$this->addend);
   }
-  function reduce(string $to) : Money
+  function reduce(Bank $bank,string $to) : Money
   {
     $ammount = fn() : int =>
       $this->augend->ammount() + $this->addend->ammount();

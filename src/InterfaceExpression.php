@@ -1,7 +1,7 @@
 <?php
 
 interface Expression {
-  function reduce(string $to) : Money;
+  function reduce(Bank $bank,string $to) : Money;
   function plus(Money $addend) : Expression;
 }
 

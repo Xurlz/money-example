@@ -6,9 +6,10 @@ class Money implements Expression {
     $this->ammount = $ammount;
     $this->currency = $currency;
   }
-  function reduce(string $to) : Money
+  function reduce(Bank $bank, string $to) : Money
   {
-    return $this;
+    $rate = $bank->rate($this->curreny,$to);
+    return new Money($this->ammount / $rate, $to);
   }
   function plus(Money $addend) : Expression
   {
