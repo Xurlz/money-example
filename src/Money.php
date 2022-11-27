@@ -1,14 +1,17 @@
 <?php
 
 class Money implements Expression {
-  function __construct(protected int $ammount, protected string $currency)
+  function __construct(
+    protected int $ammount,
+    protected string $currency
+  )
   {
     $this->ammount = $ammount;
     $this->currency = $currency;
   }
   function reduce(Bank $bank, string $to) : Money
   {
-    $rate = $bank->rate($this->curreny,$to);
+    $rate = $bank->rate($this->currency,$to);
     return new Money($this->ammount / $rate, $to);
   }
   function plus(Money $addend) : Expression

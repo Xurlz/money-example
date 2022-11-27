@@ -4,10 +4,11 @@ use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
   /*
-   * No livro, este exercício foi implementado em Java. O teste abaixo é
-   * composto pela comparação entre dois arrays com o mesmo valor. Este teste
-   * passa no php, mas falha no Java. Nos exercícios, esta falha é contornada
-   * com uma série de implementações. Este contorno não aparenta ser necessário
+   * No livro, este exercício foi implementado em Java. O teste
+   * abaixo é composto pela comparação entre dois arrays com o
+   * mesmo valor. Este teste passa no php, mas falha no Java.
+   * Nos exercícios, esta falha é contornada com uma série de
+   * implementações. Este contorno não aparenta ser necessário
    * no php. Esta parte do exercício irá ser pulada.
    */
   function testArrayEquals()
@@ -18,7 +19,12 @@ class MoneyTest extends TestCase {
   {
     $bank = new Bank;
     $bank->addRate("CHF","USD",2);
-    $result = fn() : Money => $bank->reduce(Money::franc(2),"USD");
+    var_dump($bank->rates);
+    $this->assertEquals(2, $bank->rates['CHF -> USD']);
+
+    $result = fn() : Money
+      => $bank->reduce(Money::franc(2),"USD");
+
     $this->assertEquals(Money::dollar(1), $result());
   }
   function testReduceMoney()
