@@ -37,7 +37,7 @@ class Money implements Expression {
   }
   static function franc(int $ammount)
   {
-    return new Money($ammount,"CHR");
+    return new Money($ammount,"CHF");
   }
 
   function times(int $multiplier) : Money

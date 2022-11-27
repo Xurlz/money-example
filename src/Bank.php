@@ -12,11 +12,12 @@ class Bank {
   }
   function rate(string $from, string $to) : int
   {
-    $rate = fn() : int => $this->rates["$from -> $to"];
-    return $rate();
+    foreach($this->rates as $rate) {
+      if($rate["name"] == "$from -> $to") return $rate["value"];
+    }
   }
   function addRate(string $from, string $to, int $int) : void
   {
-    $this->rates[] = [ "$from -> $to" => $int ];
+    $this->rates[] = ["name" => "$from -> $to","value" => $int ];
   }
 }

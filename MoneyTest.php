@@ -19,8 +19,6 @@ class MoneyTest extends TestCase {
   {
     $bank = new Bank;
     $bank->addRate("CHF","USD",2);
-    var_dump($bank->rates);
-    $this->assertEquals(2, $bank->rates['CHF -> USD']);
 
     $result = fn() : Money
       => $bank->reduce(Money::franc(2),"USD");
@@ -60,7 +58,7 @@ class MoneyTest extends TestCase {
   function testCurrency()
   {
     $this->assertEquals("USD",Money::dollar(1)->currency());
-    $this->assertEquals("CHR",Money::franc(1)->currency());
+    $this->assertEquals("CHF",Money::franc(1)->currency());
   }
   function testFrancMultiplication()
   {
