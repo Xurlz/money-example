@@ -3,6 +3,10 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testIdentityRate()
+  {
+    $this->assertEquals(1,(new Bank)->rate("USD","USD"));
+  }
   /*
    * No livro, este exercício foi implementado em Java. O teste
    * abaixo é composto pela comparação entre dois arrays com o
@@ -28,6 +32,7 @@ class MoneyTest extends TestCase {
   function testReduceMoney()
   {
     $bank = new Bank;
+    $this->assertNotNull($bank->reduce( Money::dollar(1), "USD"));
     $result = fn() : Money => $bank->reduce( Money::dollar(1), "USD");
     $this->assertEquals(Money::dollar(1), $result());
   }

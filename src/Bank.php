@@ -12,6 +12,7 @@ class Bank {
   }
   function rate(string $from, string $to) : int
   {
+    if($from === $to) return 1;
     foreach($this->rates as $rate) {
       if($rate["name"] == "$from -> $to") return $rate["value"];
     }
