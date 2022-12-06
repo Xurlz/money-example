@@ -3,6 +3,12 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testIdentityRate()
+  {
+    $bank = new Bank;
+    $bank->addRate("USD","USD",3); // Para "sabotar" a regra de negócio
+    $this->assertEquals(1,$bank->rate("USD","USD"));
+  }
   /*
    * No livro, este exercício foi implementado em Java. O teste
    * abaixo é composto pela comparação entre dois arrays com o
@@ -28,7 +34,9 @@ class MoneyTest extends TestCase {
   function testReduceMoney()
   {
     $bank = new Bank;
-    $result = fn() : Money => $bank->reduce( Money::dollar(1), "USD");
+    $result = fn() : Money =>
+      $bank->reduce( Money::dollar(1), "USD");
+
     $this->assertEquals(Money::dollar(1), $result());
   }
   function testReduceSum()
