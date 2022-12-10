@@ -6,6 +6,13 @@ class Sum implements Expression {
     $this->augend = $augend;
     $this->addend = $addend;
   }
+  function times(int $multiplier) : Expression
+  {
+    return new Sum(
+      $this->augend->times($multiplier),
+      $this->addend->times($multiplier)
+    );
+  }
   function plus(Expression $addend) : Expression
   {
     return new Sum($this,$this->addend);

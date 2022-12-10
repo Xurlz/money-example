@@ -3,6 +3,20 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testSumTimes()
+  {
+    $fiveBucks = fn() : Expression => Money::dollar(5);
+    $tenFrancs = fn() : Expression => Money::franc(10);
+
+    $bank = new Bank;
+    $bank->addRate("CHF","USD",2);
+
+    $sum = fn() : Expression
+      => (new Sum($fiveBucks(),$tenFrancs()))->times(2);
+
+    $result = fn() : Money => $bank->reduce($sum(),"USD");
+    $this->assertEquals(Money::dollar(20),$result());
+  }
   function testSumPlusMoney()
   {
     $fiveBucks = fn() : Expression => Money::dollar(5);
