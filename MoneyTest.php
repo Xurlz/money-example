@@ -3,6 +3,18 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testMixedAddition()
+  {
+    $fiveBucks = fn() : Expression => Money::dollar(5);
+    $tenFrancs = fn() : Expression => Money::franc(10);
+    $bank = new Bank();
+    $bank->addRate("CHF","USD",2);
+    $result = $bank->reduce(
+      $fiveBucks()->plus($tenFrancs()),
+      "USD"
+    );
+    $this->assertEquals(Money::dollar(10),$result);
+  }
   function testIdentityRate()
   {
     $bank = new Bank;
