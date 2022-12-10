@@ -3,6 +3,11 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testPlusSameCurrencyReturnsMoney()
+  {
+    $sum = Money::dollar(1)->plus(Money::dollar(1));
+    $this->assertInstanceOf(Money::class,$sum);
+  }
   function testSumTimes()
   {
     $fiveBucks = fn() : Expression => Money::dollar(5);
