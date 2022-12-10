@@ -8,7 +8,7 @@ class Sum implements Expression {
   }
   function plus(Expression $addend) : Expression
   {
-    return new Sum($this->augend,$this->addend);
+    return new Sum($this,$this->addend);
   }
   function reduce(Bank $bank,string $to) : Money
   {
@@ -23,3 +23,4 @@ class Sum implements Expression {
     return new Money($ammount(),$to);
   }
 }
+
