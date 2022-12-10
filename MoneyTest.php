@@ -3,6 +3,20 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testSumPlusMoney()
+  {
+    $fiveBucks = fn() : Expression => Money::dollar(5);
+    $tenFrancs = fn() : Expression => Money::franc(10);
+    $bank = new Bank;
+    $bank->addRate("CHF", "USD", 2);
+
+    $sum = fn() : Expression
+      => (new Sum($fiveBucks(), $tenFrancs()))
+        ->plus($fiveBucks());
+
+    $result = fn() : Money => $bank->reduce($sum(),"USD");
+    $this->assertEquals(Money::dollar(15),$result());
+  }
   function testMixedAddition()
   {
     $fiveBucks = fn() : Expression => Money::dollar(5);
