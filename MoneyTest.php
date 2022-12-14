@@ -3,9 +3,56 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
+  function testPlusSameCurrencyReturnsMoney()
+  {
+    $sum = Money::dollar(1)->plus(Money::dollar(1));
+    $this->assertInstanceOf(Money::class,$sum);
+  }
+  function testSumTimes()
+  {
+    $fiveBucks = fn() : Expression => Money::dollar(5);
+    $tenFrancs = fn() : Expression => Money::franc(10);
+
+    $bank = new Bank;
+    $bank->addRate("CHF","USD",2);
+
+    $sum = fn() : Expression
+      => (new Sum($fiveBucks(),$tenFrancs()))->times(2);
+
+    $result = fn() : Money => $bank->reduce($sum(),"USD");
+    $this->assertEquals(Money::dollar(20),$result());
+  }
+  function testSumPlusMoney()
+  {
+    $fiveBucks = fn() : Expression => Money::dollar(5);
+    $tenFrancs = fn() : Expression => Money::franc(10);
+    $bank = new Bank;
+    $bank->addRate("CHF", "USD", 2);
+
+    $sum = fn() : Expression
+      => (new Sum($fiveBucks(), $tenFrancs()))
+        ->plus($fiveBucks());
+
+    $result = fn() : Money => $bank->reduce($sum(),"USD");
+    $this->assertEquals(Money::dollar(15),$result());
+  }
+  function testMixedAddition()
+  {
+    $fiveBucks = fn() : Expression => Money::dollar(5);
+    $tenFrancs = fn() : Expression => Money::franc(10);
+    $bank = new Bank();
+    $bank->addRate("CHF","USD",2);
+    $result = $bank->reduce(
+      $fiveBucks()->plus($tenFrancs()),
+      "USD"
+    );
+    $this->assertEquals(Money::dollar(10),$result);
+  }
   function testIdentityRate()
   {
-    $this->assertEquals(1,(new Bank)->rate("USD","USD"));
+    $bank = new Bank;
+    $bank->addRate("USD","USD",3); // Para "sabotar" a regra de negócio
+    $this->assertEquals(1,$bank->rate("USD","USD"));
   }
   /*
    * No livro, este exercício foi implementado em Java. O teste
@@ -32,8 +79,9 @@ class MoneyTest extends TestCase {
   function testReduceMoney()
   {
     $bank = new Bank;
-    $this->assertNotNull($bank->reduce( Money::dollar(1), "USD"));
-    $result = fn() : Money => $bank->reduce( Money::dollar(1), "USD");
+    $result = fn() : Money =>
+      $bank->reduce( Money::dollar(1), "USD");
+
     $this->assertEquals(Money::dollar(1), $result());
   }
   function testReduceSum()
