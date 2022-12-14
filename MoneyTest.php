@@ -3,11 +3,6 @@
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase {
-  function testPlusSameCurrencyReturnsMoney()
-  {
-    $sum = Money::dollar(1)->plus(Money::dollar(1));
-    $this->assertInstanceOf(Money::class,$sum);
-  }
   function testSumTimes()
   {
     $fiveBucks = fn() : Expression => Money::dollar(5);
@@ -53,18 +48,6 @@ class MoneyTest extends TestCase {
     $bank = new Bank;
     $bank->addRate("USD","USD",3); // Para "sabotar" a regra de negócio
     $this->assertEquals(1,$bank->rate("USD","USD"));
-  }
-  /*
-   * No livro, este exercício foi implementado em Java. O teste
-   * abaixo é composto pela comparação entre dois arrays com o
-   * mesmo valor. Este teste passa no php, mas falha no Java.
-   * Nos exercícios, esta falha é contornada com uma série de
-   * implementações. Este contorno não aparenta ser necessário
-   * no php. Esta parte do exercício irá ser pulada.
-   */
-  function testArrayEquals()
-  {
-    $this->assertEquals(['abc'],['abc']);
   }
   function testReduceMoneyDifferentCurrency()
   {
